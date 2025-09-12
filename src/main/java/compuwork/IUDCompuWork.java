@@ -4,6 +4,7 @@
 
 package compuwork;
 
+import usuarios.Usuario;
 /**
  *
  * @author Jose Felipe
@@ -11,6 +12,7 @@ package compuwork;
 public class IUDCompuWork {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Usuario us = new Usuario();
+        us.imprimir();
     }
 }
