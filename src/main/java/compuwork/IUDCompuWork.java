@@ -9,10 +9,11 @@ import usuarios.Usuario;
  *
  * @author Jose Felipe
  */
+
 public class IUDCompuWork {
 
     public static void main(String[] args) {
         Usuario us = new Usuario();
-        us.imprimir();
+        
     }
 }
