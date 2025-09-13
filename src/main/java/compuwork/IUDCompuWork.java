@@ -4,7 +4,7 @@
 
 package compuwork;
 
-import usuarios.Usuario;
+import usuarios.GestionUsuarios;
 /**
  *
  * @author Jose Felipe
@@ -13,7 +13,8 @@ import usuarios.Usuario;
 public class IUDCompuWork {
 
     public static void main(String[] args) {
-        Usuario us = new Usuario();
         
+        GestionUsuarios gestion = new GestionUsuarios();
+        gestion.iniciarCesion();
     }
 }
