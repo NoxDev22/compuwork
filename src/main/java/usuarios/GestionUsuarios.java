@@ -22,12 +22,24 @@ public class GestionUsuarios {
     }
     
     public void inicializarUsuarios(){
-       usuarios.add( new Usuario("1234","pedro12","pedro1234","Empleado"));
-       usuarios.add(new Usuario("4536","maria09","maria0936","Gerente"));
-       usuarios.add(new Usuario("9076","xdev","xdev25","Administrador"));   
+       usuarios.add( new Usuario("pedro12","pedro1234","Empleado"));
+       usuarios.add(new Usuario("maria09","maria0936","Gerente"));
+       usuarios.add(new Usuario("xdev","xdev25","Administrador"));   
     }
     
-     public void iniciarSesion() {
+    public Usuario buscarUsuario(String usuario){
+         // Buscar usuario
+         
+         for (Usuario u : usuarios) {
+            if (u.getUsuario().equals(usuario)) {
+                return u;            
+            }
+         }    
+         return null;
+    }
+      
+    //Metodo para el inicio de sesión
+    public void iniciarSesion() {
         boolean salir = false;
         boolean sesionCerrada = false;
         int opcion = 0;
@@ -36,14 +48,8 @@ public class GestionUsuarios {
             System.out.println("\nIngrese su Usuario:");
             String usu = in.nextLine();
             
-            // Buscar usuario
-            Usuario usuarioEncontrado = null;
-            for (Usuario u : usuarios) {
-                if (u.getUsuario().equals(usu)) {
-                    usuarioEncontrado = u;
-                    break;
-                }
-            }
+           
+            Usuario usuarioEncontrado = buscarUsuario(usu);
             
             if (usuarioEncontrado == null) {
                 System.out.println("\nUsuario no encontrado.");
@@ -57,8 +63,7 @@ public class GestionUsuarios {
                     String contra = in.nextLine();
                     
                     if (usuarioEncontrado.getContrasena().equals(contra)) {
-                        System.out.println("\nSesíon iniciada con rol: " + usuarioEncontrado.getRol());
-                        sesionCerrada = dirigirSesion(usuarioEncontrado.getRol());
+                        sesionCerrada = dirigirSesion(usuarioEncontrado.getRol(), usuarioEncontrado.getUsuario());
                         acceso = true;
                     } else {
                         intentos--;
@@ -88,12 +93,25 @@ public class GestionUsuarios {
         }
     }
     
-    private boolean dirigirSesion(String rol) {
-        System.out.println("Dirigiendo al menú del rol: " + rol);
-        // Aquí podrías implementar lo que hace cada rol
+    //Metodo para dirigir la sesión segun el rol
+    private boolean dirigirSesion(String rol,String usuario) {
+        GestionUsuarios gestion = new GestionUsuarios();
         
-        
+        if(rol.equals("Administrador")){
+            Administrador admin = new Administrador(gestion);
+            admin.operacionesAdministrador(usuario);
+        }
+        if(rol.equals("Gerente")){
+            
+        }
+        if(rol.equals("Empleado")){
+            
+        }
+            
         return true;
     }
     
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
 }

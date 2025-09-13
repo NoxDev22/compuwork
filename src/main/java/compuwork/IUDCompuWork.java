@@ -5,6 +5,7 @@
 package compuwork;
 
 import usuarios.GestionUsuarios;
+import usuarios.Administrador;
 /**
  *
  * @author Jose Felipe
@@ -16,5 +17,6 @@ public class IUDCompuWork {
         
         GestionUsuarios gestion = new GestionUsuarios();
         gestion.iniciarSesion();
+        
     }
 }
