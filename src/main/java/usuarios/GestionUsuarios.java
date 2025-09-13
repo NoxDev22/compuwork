@@ -27,76 +27,73 @@ public class GestionUsuarios {
        usuarios.add(new Usuario("9076","xdev","xdev25","Administrador"));   
     }
     
-    public void iniciarCesion(){
-        String usu = "";
-        String contra = "";
-        String rol = "";
-        int intentos = 2;
-        int reintentar = 1;
-        boolean iniciarSecion = false;
-    
-        do {
-            System.out.println("Por favor Ingrese su Usuario");
-            usu = in.nextLine();
+     public void iniciarSesion() {
+        boolean salir = false;
+        boolean sesionCerrada = false;
+        int opcion = 0;
+        
+        while (!salir) {
+            System.out.println("\nIngrese su Usuario:");
+            String usu = in.nextLine();
             
-            for(Usuario usuario: usuarios){ 
-                if(usu.equals(usuario.getUsuario())){
-                    for(int i = 0; i < 2; i++){
-                       System.out.println("");
-                       System.out.println("Por favor Ingrese su Contraseña");
-                       contra = in.nextLine(); 
-                       
-                       if(contra.equals(usuario.getContrasena())){
-                           iniciarSecion = true;
-                           rol = usuario.getRol();
-                           return;
-                       }else{
-                           System.out.println("");
-                           System.out.println("!Error contraseña incorrecta");
-                           System.out.println("Tiene "+(intentos - i)+" intentos");
-                       }
-                    }
-                    if(iniciarSecion || intentos == 0){
-                        return;
-                    }
+            // Buscar usuario
+            Usuario usuarioEncontrado = null;
+            for (Usuario u : usuarios) {
+                if (u.getUsuario().equals(usu)) {
+                    usuarioEncontrado = u;
+                    break;
                 }
             }
-             
-            if(iniciarSecion){
-               dirigirSecion(rol);  
-               
-               reintentar = 2;
-            }else{
-                System.out.println("");
-                System.out.println("!Error el usuario no se encuentra registrado");
+            
+            if (usuarioEncontrado == null) {
+                System.out.println("\nUsuario no encontrado.");
+            } else {
+                // Si existe el usuario -> validamos contraseña
+                int intentos = 3;
+                boolean acceso = false;
+                
+                while (intentos > 0 && !acceso) {
+                    System.out.println("\nIngrese su Contraseña:");
+                    String contra = in.nextLine();
+                    
+                    if (usuarioEncontrado.getContrasena().equals(contra)) {
+                        System.out.println("\nSesíon iniciada con rol: " + usuarioEncontrado.getRol());
+                        sesionCerrada = dirigirSesion(usuarioEncontrado.getRol());
+                        acceso = true;
+                    } else {
+                        intentos--;
+                        System.out.println("\nContraseña incorrecta. Intentos restantes: " + intentos);
+                    }
+                }
+                
+                if (!acceso) {
+                    System.out.println("\n️Ha superado el número máximo de intentos. Acceso bloqueado.");
+                }
             }
             
-            if(reintentar == 2){
-                System.out.println("");
-                System.out.println("Cesion cerrada");
-                System.out.println("");
-            }else{
-                System.out.println("");
-                System.out.println("Desea volver a intentarlo");
-                System.out.println("1: SI");
-                System.out.println("2: NO");
-                reintentar = in.nextInt();
-                in.nextLine();
-                if(reintentar == 1){
-                    iniciarSecion = false;
-                }else if(reintentar == 2){
-                    iniciarSecion = true;
-                }else {
-                    iniciarSecion = true;
-                }         
+            if(!sesionCerrada){
+                // Preguntar si desea volver a intentar
+                System.out.println("\n ¿Desea volver a intentarlo?");
+                System.out.println("1: Sí");
+                System.out.println("2: No");
+                opcion = in.nextInt();
+                in.nextLine(); 
+            
             }
-         
-        }while(iniciarSecion == false);      
+                if (opcion == 2 || sesionCerrada) {
+                salir = true;
+                System.out.println("\n Sesión finalizada.");
+            }
+            
+        }
     }
     
-    public void dirigirSecion(String rol){
+    private boolean dirigirSesion(String rol) {
+        System.out.println("Dirigiendo al menú del rol: " + rol);
+        // Aquí podrías implementar lo que hace cada rol
         
-        System.out.println("Funciona la secion rol: "+rol);
+        
+        return true;
     }
     
 }

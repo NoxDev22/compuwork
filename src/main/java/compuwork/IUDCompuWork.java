@@ -15,6 +15,6 @@ public class IUDCompuWork {
     public static void main(String[] args) {
         
         GestionUsuarios gestion = new GestionUsuarios();
-        gestion.iniciarCesion();
+        gestion.iniciarSesion();
     }
 }
