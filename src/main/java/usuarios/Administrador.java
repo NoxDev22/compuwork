@@ -32,8 +32,7 @@ public class Administrador {
             System.out.println("3. Consultar Usuario");
             System.out.println("4. Actualizar Usuario");
             System.out.println("5. Eliminar Usuario");
-            System.out.println("6: Cancelar");
-            System.out.println("7: Cerrar Sesión");
+            System.out.println("6: Cerrar Sesión");
             int opcion = in.nextInt();
             in.nextLine();
             
@@ -55,12 +54,8 @@ public class Administrador {
                     eliminarUsuario();
                     break;
                 case 6: 
-                    System.out.println("\nOperacion cancelada");
-                    break;
-                case 7: 
                     noCerrar = false;
-                    break;
-                
+                    break;  
                 default:
                     System.out.println("\n!Error opcion invalida");
             }

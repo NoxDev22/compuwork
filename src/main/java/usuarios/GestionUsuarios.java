@@ -102,7 +102,8 @@ public class GestionUsuarios {
             admin.operacionesAdministrador(usuario);
         }
         if(rol.equals("Gerente")){
-            
+           Gerente gerente = new Gerente();
+           gerente.operacionesGerente(usuario);
         }
         if(rol.equals("Empleado")){
             
