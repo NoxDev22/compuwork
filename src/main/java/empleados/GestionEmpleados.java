@@ -29,7 +29,11 @@ public class GestionEmpleados {
         empleados.add(new Empleado("987","230987865","Carlos Mario",
  "Martinez","Servicios generales","3139715654","2025-08-3","1440000","Si"));
         empleados.add(new Empleado("025","098076545","Luisa Fernanda",
- "Torreglosa","Programadora","3129867564","2024-010-24","2840000","No"));
+ "Torreglosa","Programadora","3129867564","2024-10-24","2840000","No"));
+         empleados.add(new Empleado("385","214658709","Jose Daniel",
+ "Novoa","Programador","3154768907","2025-09-01","2840000","No"));
+          empleados.add(new Empleado("530","325467890","Andres",
+ "Maldonado","Analista","3112345443","2024-10-23","2940000","No"));
     }
     
     public void operacionesEmpleado(){
@@ -92,10 +96,10 @@ public class GestionEmpleados {
     }
     
     //Metodos de busqueda
-    public Empleado buscarEmpleado(String id){
+    public Empleado buscarEmpleado(String id, String cedula){
         
         for(Empleado emp: empleados){
-            if(emp.getIdEmpleado().equals(id)){
+            if(emp.getIdEmpleado().equals(id) || emp.getCedula().equals(cedula)){
                 return emp;
             }
         }
@@ -141,19 +145,19 @@ public class GestionEmpleados {
     }
     
     public void consultarEmpleados(){
-        System.out.println("\n Lista de empleados agregados");
+        System.out.println("\nLista de empleados agregados");
         
         for(Empleado emp: empleados){
-            System.out.println("\n Id: "+emp.getIdEmpleado()
-                             + "\n Cedula: "+emp.getCedula()
-                             + "\n Nombre: "+emp.nombre
-                             + "\n Apellido: "+emp.apellido
-                             + "\n Cargo: "+emp.cargo
-                             + "\n Telefono: "+emp.telefono
-                             + "\n Fecha ingreso: "+emp.fechaIngreso
-                             + "\n Salario: "+emp.salario
-                             + "\n Temporal: "+emp.temporal);
-            System.out.println(" ****************************");
+            System.out.println("\nId: "+emp.getIdEmpleado()
+                             + "\nCedula: "+emp.getCedula()
+                             + "\nNombre: "+emp.nombre
+                             + "\nApellido: "+emp.apellido
+                             + "\nCargo: "+emp.cargo
+                             + "\nTelefono: "+emp.telefono
+                             + "\nFecha ingreso: "+emp.fechaIngreso
+                             + "\nSalario: "+emp.salario
+                             + "\nTemporal: "+emp.temporal);
+            System.out.println("****************************");
         }
     }
     
@@ -161,28 +165,49 @@ public class GestionEmpleados {
        
         System.out.println("\n Ingrese el id del empleado a consultar");
         String id = in.nextLine();
-        Empleado emp = buscarEmpleado(id);
+        Empleado emp = buscarEmpleado(id,"");
         if(emp == null){
             System.out.println("\nEmpleado no encontrado");
             return;
         }
-            System.out.println("\n Empleado consultado");
-            System.out.println("\n Id: "+emp.getIdEmpleado()
-                             + "\n Cedula: "+emp.getCedula()
-                             + "\n Nombre: "+emp.nombre
-                             + "\n Apellido: "+emp.apellido
-                             + "\n Cargo: "+emp.cargo
-                             + "\n Telefono: "+emp.telefono
-                             + "\n Fecha ingreso: "+emp.fechaIngreso
-                             + "\n Salario: "+emp.salario
-                             + "\n Temporal: "+emp.temporal);
-            System.out.println(" ****************************");
+            System.out.println("\nEmpleado consultado");
+            System.out.println("\nId: "+emp.getIdEmpleado()
+                             + "\nCedula: "+emp.getCedula()
+                             + "\nNombre: "+emp.nombre
+                             + "\nApellido: "+emp.apellido
+                             + "\nCargo: "+emp.cargo
+                             + "\nTelefono: "+emp.telefono
+                             + "\nFecha ingreso: "+emp.fechaIngreso
+                             + "\nSalario: "+emp.salario
+                             + "\nTemporal: "+emp.temporal);
+            System.out.println("****************************");
+    }
+    
+    public void consultarEmpCedula(){
+        System.out.println("\nIngrese el numero de cedula del empleado a consultar");
+        String cedula = in.nextLine();
+        Empleado emp = buscarEmpleado("",cedula);
+        if(emp == null){
+            System.out.println("\nEmpleado no encontrado");
+            return;
+        }
+        System.out.println("\nEmpleado consultado");
+        System.out.println("\nId: "+emp.getIdEmpleado()
+                           + "\nCedula: "+emp.getCedula()
+                             + "\nNombre: "+emp.nombre
+                             + "\nApellido: "+emp.apellido
+                             + "\nCargo: "+emp.cargo
+                             + "\nTelefono: "+emp.telefono
+                             + "\nFecha ingreso: "+emp.fechaIngreso
+                             + "\nSalario: "+emp.salario
+                             + "\nTemporal: "+emp.temporal);
+        System.out.println("****************************");
     }
     
     public void modificarEmpleado(){
         System.out.println("\n Ingrese el id del empleado a consultar");
         String id = in.nextLine();
-        Empleado emp = buscarEmpleado(id);
+        Empleado emp = buscarEmpleado(id,"");
         if(emp == null){
             System.out.println("\nEmpleado no encontrado");
             return;
@@ -255,7 +280,7 @@ public class GestionEmpleados {
     public void eliminarEmpleado(){
         System.out.println("\nIngrese el id del empleado a eliminar");
         String id = in.nextLine();
-        Empleado emp = buscarEmpleado(id);
+        Empleado emp = buscarEmpleado(id,"");
         if(emp == null){
             System.out.println("\nEmpleado no encontrado");
             return;

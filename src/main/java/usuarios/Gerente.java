@@ -13,15 +13,14 @@ import empleados.GestionEmpleados;
  */
 public class Gerente {
     
-    private boolean continuar = true;
-    private boolean noCerrar = true;
+
     
     Scanner in = new Scanner(System.in);
     
-    public void operacionesGerente(String usuario){
+    public void operacionesGerente(GestionDepartamento gstDep,GestionEmpleados gstEmp, String usuario){
 
-        GestionEmpleados gstEmp = new GestionEmpleados();
-        GestionDepartamento gstDep = new GestionDepartamento(gstEmp);
+        boolean continuar = true;
+        boolean noCerrar = true;
         
         System.out.println("\nBienvenido "+usuario);
         while(continuar){

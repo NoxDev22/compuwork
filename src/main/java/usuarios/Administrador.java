@@ -14,8 +14,7 @@ public class Administrador {
     
     private ArrayList<Usuario> usuarios; 
     private Scanner in = new Scanner(System.in);
-    boolean continuar = true;
-    boolean noCerrar = true;
+    
     
     //Constructor recibe la lista desde GestionUsuarios
     public Administrador(GestionUsuarios gestion) {
@@ -23,6 +22,10 @@ public class Administrador {
     }
     
     public void operacionesAdministrador(String usuario){
+        
+        boolean continuar = true;
+        boolean noCerrar = true;
+        
         System.out.println("Bienvenido "+usuario);
         
         while(continuar){
@@ -76,6 +79,7 @@ public class Administrador {
                 
             }else {
                 System.out.println("\nCerrando sesión...");
+                continuar = false;
             }
 
         }
