@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import empleados.GestionEmpleados;
 import departamentos.GestionDepartamento;
+import desempeno.GestionDesempeno;
 
 /**
  *
@@ -27,7 +28,7 @@ public class GestionUsuarios {
     GestionEmpleados gstEmp = new GestionEmpleados();
     UsuarioEmpleado usuEmp = new UsuarioEmpleado(gstEmp);
     GestionDepartamento gstDep = new GestionDepartamento(gstEmp);
-   
+    GestionDesempeno gstDes = new GestionDesempeno(gstDep,gstEmp);
     
     public void inicializarUsuarios(){
        this.usuarios.add( new Usuario("pedro12","pedro1234","Empleado"));
@@ -111,7 +112,7 @@ public class GestionUsuarios {
             Administrador admin = new Administrador(gestion);
             admin.operacionesAdministrador(usuario);
         }else if(rol.equals("Gerente")){            
-            gerente.operacionesGerente(gstDep,gstEmp ,usuario);
+            gerente.operacionesGerente(gstDep,gstEmp,gstDes,usuario);
         }else if(rol.equals("Empleado")){
             usuEmp.operacionesUEmpleado(usuario);
             
@@ -120,7 +121,7 @@ public class GestionUsuarios {
         }
             
         try{
-            System.out.println("\n¿Desea ingresar un nuevo usuario?");
+            System.out.println("\n¿Desea ingresar con un nuevo usuario?");
             System.out.println("1: Si");
             System.out.println("2: No");
             int op = in.nextInt();

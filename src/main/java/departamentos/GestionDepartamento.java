@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import empleados.GestionEmpleados;
 import empleados.Empleado;
+
+import desempeno.DesDepartamento;
 /**
  *
  * @author Jose Felipe
@@ -17,8 +19,7 @@ public class GestionDepartamento {
     
     private ArrayList<Departamento> departamentos;
     private ArrayList<Empleado> empleados;
-    private boolean continuar = true;
-    private boolean noCerrar = true;
+    
     
     Scanner in = new Scanner(System.in);
     Departamento dep1 = new Departamento("103","Operaciones","Supervisa la producción de bienes.");
@@ -36,7 +37,8 @@ public class GestionDepartamento {
     }
     
     public void operacionesDepartamento(){
-        continuar = true;
+        boolean continuar = true;
+        boolean noCerrar = true;
         
         while(continuar){
             System.out.println("\n ¿Que operacion desea realizar?");
@@ -244,6 +246,7 @@ public class GestionDepartamento {
         System.out.println("\nOperaion cancelada");
     }
     
+    //Metodos empleados
     public void asignarEmpleados(){
         boolean continuar = true;
         
@@ -311,5 +314,72 @@ public class GestionDepartamento {
         dep.consultarEmpleados();
     }
     
+    //Metodos desempeño
+    public void evaluarDesepeno(){
+        boolean continuar = true;
+        
+        consultarDepartamentos();
+        
+        System.out.println("\nIngrese el id del departamento al"
+                         + "\nque quiere evaluar");
+        String id = in.nextLine();
+        Departamento dep = buscarDepartamento(id);
+        if(dep == null){
+            System.out.println("\nDepartamento no encontrado");
+            return;
+        } 
+        
+        try{
+            while(continuar){
+                System.out.println("\nEvaluacion de desempeño");
+                System.out.println("\nDepartamento "+dep.getNombre());
+                System.out.println("\nEl departamento ha cumplido sus objetivos");
+                String cumpli = in.nextLine();
+                System.out.println("\nEl departamento ha tenido buenos resultados");
+                String result = in.nextLine();
+                System.out.println("\nComo ha sido la calida del trabajo en el departamento");
+                String calidad = in.nextLine();
+                System.out.println("\nEl departamento tiene potencial de crecimiento");
+                String crecimi = in.nextLine();
+                System.out.println("\nComo maneja el departamento su carga de trabajo");
+                String trabajo = in.nextLine();
+                System.out.println("\nComo es el consumo de recursos en el departamento");
+                String recurso = in.nextLine();
+                System.out.println("\nEl departamento presenta objetivos claros");
+                String objet = in.nextLine();
+                
+                DesDepartamento desempeno = new DesDepartamento(cumpli,result,calidad,crecimi,trabajo,recurso,objet);
+                dep.asignarDesempeno(desempeno);
+                System.out.println("******************************************");               
+                
+                System.out.println("\nDesea realizar otra evaluacion de desempeño");
+                System.out.println("1: Si");
+                System.out.println("2: No");
+                int op3 = in.nextInt();
+                in.nextLine();
+                
+                if(op3 == 2){
+                    System.out.println("\nCerrando..");
+                    continuar = false;
+                }
+            }
+            
+        }catch(Exception e){
+          System.out.println("\nError algo salio mal "+e); 
+        }
+    }
     
+    public void generarReporte(){
+        consultarDepartamentos();
+        
+        System.out.println("\nIngrese el id del departamento ");
+        String id = in.nextLine();
+        Departamento dep = buscarDepartamento(id);
+        if(dep == null){
+            System.out.println("\nDepartamento no encontrado");
+            return;
+        }
+        System.out.println("\nReporte de desempeño departamento "+dep.getNombre());
+        dep.reporteDesempeno();
+    }
 }

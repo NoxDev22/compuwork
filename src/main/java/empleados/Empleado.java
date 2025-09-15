@@ -38,6 +38,40 @@ public class Empleado {
         this.temporal = temporal;  
     }
     
+     //Metodo CRUD desempeno
+    public void asignarDesempeno(DesEmpleado emp){
+        this.desempenos.add(emp);
+        System.out.println("\nEvaluacion registrada con exito :)");
+    }
+    
+    public void reporteDesempeno(){
+        for(DesEmpleado des: desempenos){
+
+            if(desempenos.isEmpty()){
+                System.out.println("No hay informacion para mostrar");
+                return;
+            }
+            System.out.println("\nEl empleado ha cumplido sus objetivos");
+            System.out.println(des.cumplioObjetivos);
+            System.out.println("\nEl empleado ha tenido buenos resultados con sus objetivos");
+            System.out.println(des.resultadoObjetivos);
+            System.out.println("\nComo ha sido la calida del trabajo del empleado");
+            System.out.println(des.calidadTrabajo);
+            System.out.println("\nEl empleado tiene potencial de crecimiento");
+            System.out.println(des.potencialCrecimiento);
+            System.out.println("\nComo son las habilidades tecnicas del empleado");
+            System.out.println(des.habilidades);
+            System.out.println("\nComo se desenvuelve el empleado en su puesto");
+            System.out.println(des.conocimientoPuesto);
+            System.out.println("\nEl empleado tiene buena relacion con sus compañeros");
+            System.out.println(des.relacionesPersonales);
+            System.out.println("\nEl empleado tiene una buena comunicacion");
+            System.out.println(des.comunicacion);
+            System.out.println(" ****************************");
+        }
+    }
+    
+    
     
     public String getIdEmpleado() {
         return idEmpleado;

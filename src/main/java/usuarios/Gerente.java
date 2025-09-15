@@ -7,6 +7,7 @@ package usuarios;
 import java.util.Scanner;
 import departamentos.GestionDepartamento;
 import empleados.GestionEmpleados;
+import desempeno.GestionDesempeno;
 /**
  *
  * @author Jose Felipe
@@ -17,7 +18,8 @@ public class Gerente {
     
     Scanner in = new Scanner(System.in);
     
-    public void operacionesGerente(GestionDepartamento gstDep,GestionEmpleados gstEmp, String usuario){
+    public void operacionesGerente(GestionDepartamento gstDep,GestionEmpleados gstEmp,
+            GestionDesempeno gstDes ,String usuario){
 
         boolean continuar = true;
         boolean noCerrar = true;
@@ -40,6 +42,7 @@ public class Gerente {
                     gstDep.operacionesDepartamento();
                     break;
                 case 3: 
+                    gstDes.operacionesDesempeno();
                     break;
                 case 4: 
                     noCerrar = false;

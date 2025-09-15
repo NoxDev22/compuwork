@@ -6,6 +6,8 @@ package empleados;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import desempeno.DesEmpleado;
 /**
  *
  * @author Jose Felipe
@@ -302,8 +304,75 @@ public class GestionEmpleados {
         System.out.println("\nOperaion cancelada");
     }
     
-    public void gestionarDesempeno(){
+    //Metodos desempeño
+    public void evaluarDesepeno(){
+        boolean continuar = true;
         
+        consultarEmpleados();
+        
+        System.out.println("\nIngrese el id del empleado al"
+                         + "\nque quiere evaluar");
+        String id = in.nextLine();
+        Empleado emp = buscarEmpleado(id,"");
+        if(emp == null){
+            System.out.println("\nEmpleado no encontrado");
+            return;
+        } 
+        
+        try{
+            while(continuar){
+                System.out.println("\nEvaluacion de desempeño");
+                System.out.println("\nEmpleado "+emp.nombre);
+                System.out.println("\nEl empleado ha cumplido sus objetivos");
+                String cumpli = in.nextLine();
+                System.out.println("\nEl empleado ha tenido buenos resultados con sus objetivos");
+                String result = in.nextLine();
+                System.out.println("\nComo ha sido la calida del trabajo del empleado");
+                String calidad = in.nextLine();
+                System.out.println("\nEl empleado tiene potencial de crecimiento");
+                String crecimi = in.nextLine();
+                System.out.println("\nComo son las habilidades tecnicas del empleado");
+                String habilidades = in.nextLine();
+                System.out.println("\nComo se desenvuelve el empleado en su puesto");
+                String conoPuesto = in.nextLine();
+                System.out.println("\nEl empleado tiene buena relacion con sus compañeros");
+                String relaciones = in.nextLine();
+                System.out.println("\nEl empleado tiene una buena comunicacion");
+                String comunicacion = in.nextLine();
+                
+                DesEmpleado desempeno = new DesEmpleado(cumpli,result,calidad,crecimi,
+                        habilidades,conoPuesto,relaciones,comunicacion);
+                emp.asignarDesempeno(desempeno);
+                System.out.println("******************************************");               
+                
+                System.out.println("\nDesea realizar otra evaluacion de desempeño");
+                System.out.println("1: Si");
+                System.out.println("2: No");
+                int op3 = in.nextInt();
+                in.nextLine();
+                
+                if(op3 == 2){
+                    System.out.println("\nCerrando..");
+                    continuar = false;
+                }
+            }
+            
+        }catch(Exception e){
+          System.out.println("\nError algo salio mal "+e); 
+        }
+    }
+    
+    public void generarReporte(){
+        
+        System.out.println("\nIngrese el id del empleado ");
+        String id = in.nextLine();
+        Empleado emp = buscarEmpleado(id,"");
+        if(emp == null){
+            System.out.println("\nDepartamento no encontrado");
+            return;
+        }
+        System.out.println("\nReporte de desempeño empleado "+emp.nombre);
+        emp.reporteDesempeno();
     }
     
     public ArrayList<Empleado> getEmpleados() {

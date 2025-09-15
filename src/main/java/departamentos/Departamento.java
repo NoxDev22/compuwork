@@ -17,7 +17,7 @@ public class Departamento {
     private String idDepartamento;
     private String nombre;
     private String funcion;
-    private ArrayList<DesDepartamento> desempeno;
+    private ArrayList<DesDepartamento> desempenos;
     private ArrayList<Empleado> empleados;
     
     
@@ -26,19 +26,40 @@ public class Departamento {
         this.nombre = nombre;
         this.funcion = funcion;
         
-        this.desempeno = new ArrayList<>();
+        this.desempenos = new ArrayList<>();
         this.empleados = new ArrayList<>();
     }
   
-    //Metodo de busqueda
-    public int obtenerIndiceDesempeno(String id){
-        
-        for (int i = 0; i < desempeno.size(); i++) {
-            if (desempeno.get(i).equals(id)) {
-                return i;   
+    
+    //Metodo CRUD desempeno
+    public void asignarDesempeno(DesDepartamento dep){
+        this.desempenos.add(dep);
+        System.out.println("\nEvaluacion registrada con exito :)");
+    }
+    
+    public void reporteDesempeno(){
+        for(DesDepartamento des: desempenos){
+
+            if(desempenos.isEmpty()){
+                System.out.println("No hay informacion para mostrar");
+                return;
             }
+            System.out.println("\nEl departamento ha cumplido sus objetivos");
+            System.out.println(des.cumplioObjetivos);
+            System.out.println("\nEl departamento ha tenido buenos resultados");
+            System.out.println(des.resultadoObjetivos);
+            System.out.println("\nComo ha sido la calida del trabajo en el departamento");
+            System.out.println(des.calidadTrabajo);
+            System.out.println("\nEl departamento tiene potencial de crecimiento");
+            System.out.println(des.potencialCrecimiento);
+            System.out.println("\nComo maneja el departamento su carga de trabajo");
+            System.out.println(des.cantidadTrabajo);
+            System.out.println("\nComo es el consumo de recursos en el departamento");
+            System.out.println(des.usoRecursos);
+            System.out.println("\nEl departamento presenta objetivos claros");
+            System.out.println(des.objetivosClaros);
+            System.out.println(" ****************************");
         }
-         return -1;
     }
     
     //Metodos CRUD empleados

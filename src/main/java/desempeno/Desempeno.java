@@ -10,4 +10,17 @@ package desempeno;
  */
 public class Desempeno {
     
+    public String cumplioObjetivos;
+    public String resultadoObjetivos;
+    public String calidadTrabajo;
+    public String potencialCrecimiento;
+    
+    public Desempeno(String cumplimiento, String resultado, String calidad, String crecimiento){
+        
+        this.cumplioObjetivos = cumplimiento;
+        this.resultadoObjetivos = resultado;
+        this.calidadTrabajo = calidad;
+        this.potencialCrecimiento = crecimiento;
+    }
+    
 }

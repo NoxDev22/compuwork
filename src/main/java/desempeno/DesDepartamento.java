@@ -8,6 +8,17 @@ package desempeno;
  *
  * @author Jose Felipe
  */
-public class DesDepartamento {
+public class DesDepartamento extends Desempeno{
+    public String cantidadTrabajo;
+    public String usoRecursos;
+    public String objetivosClaros;
     
+      public DesDepartamento(String cumplimiento, String resultado, String calidad, String crecimiento,
+                       String trabajo, String recursos,String objetivos) {
+        super(cumplimiento, resultado, calidad, crecimiento); 
+        this.cantidadTrabajo = trabajo;
+        this.usoRecursos = recursos;
+        this.objetivosClaros = objetivos;
+    }
+      
 }
