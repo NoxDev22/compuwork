@@ -50,13 +50,13 @@ public class GestionUsuarios {
       
     //Metodo para el inicio de sesión
     public void iniciarSesion(GestionUsuarios gest) {      
-        
+        System.out.println("\nBienvenid@ al sistema de CompuWork");
         boolean noCerrarSesion = true;
         boolean noSesion = true;
         int opcion = 0;
         
         while (noCerrarSesion) {
-            System.out.println("\nIngrese su Usuario:");
+            System.out.println("\nPor favor ingrese su Usuario:");
             String usu = in.nextLine();            
            
             Usuario usuarioEncontrado = buscarUsuario(usu);
