@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package usuarios;
+package sesion;
 
+import empleados.UsuarioEmpleado;
+import gerente.Gerente;
+import administrador.ModelAdmin;
 import java.util.ArrayList;
 import java.util.Scanner;
 import empleados.GestionEmpleados;
@@ -16,7 +19,7 @@ import desempeno.GestionDesempeno;
  */
 public class GestionUsuarios {
     
-    private ArrayList<Usuario> usuarios;
+    private ArrayList<User> usuarios;
     Scanner in = new Scanner(System.in);
         
     public GestionUsuarios(){
@@ -31,16 +34,16 @@ public class GestionUsuarios {
     GestionDesempeno gstDes = new GestionDesempeno(gstDep,gstEmp);
     
     public void inicializarUsuarios(){
-       this.usuarios.add( new Usuario("pedro12","pedro1234","Empleado"));
-       this.usuarios.add(new Usuario("maria09","maria0936","Gerente"));
-       this.usuarios.add(new Usuario("xdev","xdev25","Administrador"));
-       this.usuarios.add(new Usuario("daniel20","daniel2025","Empleado"));
+       this.usuarios.add( new User("pedro12","pedro1234","Empleado"));
+       this.usuarios.add(new User("maria09","maria0936","Gerente"));
+       this.usuarios.add(new User("xdev","xdev25","Administrador"));
+       this.usuarios.add(new User("daniel20","daniel2025","Empleado"));
     }
     
-    public Usuario buscarUsuario(String usuario){
+    public User buscarUsuario(String usuario){
          // Buscar usuario
          
-         for (Usuario u : usuarios) {
+         for (User u : usuarios) {
             if (u.getUsuario().equals(usuario)) {
                 return u;            
             }
@@ -59,7 +62,7 @@ public class GestionUsuarios {
             System.out.println("\nPor favor ingrese su Usuario:");
             String usu = in.nextLine();            
            
-            Usuario usuarioEncontrado = buscarUsuario(usu);
+            User usuarioEncontrado = buscarUsuario(usu);
             
             if (usuarioEncontrado == null) {
                 System.out.println("\nUsuario no encontrado.");
@@ -109,7 +112,7 @@ public class GestionUsuarios {
     private boolean dirigirSesion(String rol,String usuario,GestionUsuarios gestion) {
         
         if(rol.equals("Administrador")){
-            Administrador admin = new Administrador(gestion);
+            ModelAdmin admin = new ModelAdmin(gestion);
             admin.operacionesAdministrador(usuario);
         }else if(rol.equals("Gerente")){            
             gerente.operacionesGerente(gstDep,gstEmp,gstDes,usuario);
@@ -137,7 +140,7 @@ public class GestionUsuarios {
         }
     }
     
-    public ArrayList<Usuario> getUsuarios() {
+    public ArrayList<User> getUsuarios() {
         return usuarios;
     }
 }

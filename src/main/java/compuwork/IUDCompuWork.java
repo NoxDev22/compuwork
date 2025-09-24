@@ -4,19 +4,9 @@
 
 package compuwork;
 
-import usuarios.GestionUsuarios;
-import usuarios.Administrador;
+import sesion.GestionUsuarios;
+import sesion.Login;
 /**
  *
  * @author Jose Felipe
  */
-
-public class IUDCompuWork {
-
-    public static void main(String[] args) {
-        
-        GestionUsuarios gestion = new GestionUsuarios();
-        gestion.iniciarSesion(gestion);
-        
-    }
-}

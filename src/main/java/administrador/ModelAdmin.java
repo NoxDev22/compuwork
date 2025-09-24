@@ -2,22 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package usuarios;
+package administrador;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import sesion.GestionUsuarios;
+import sesion.User;
 /**
  *
  * @author Jose Felipe
  */
-public class Administrador {
+public class ModelAdmin {
     
-    private ArrayList<Usuario> usuarios; 
+    private ArrayList<User> usuarios; 
     private Scanner in = new Scanner(System.in);
     
     
     //Constructor recibe la lista desde GestionUsuarios
-    public Administrador(GestionUsuarios gestion) {
+    public ModelAdmin(GestionUsuarios gestion) {
         this.usuarios = gestion.getUsuarios();
     }
     
@@ -86,10 +88,10 @@ public class Administrador {
 
     }
     
-    public Usuario buscarUsuario(String usuario){
+    public User buscarUsuario(String usuario){
     
          // Buscar usuario
-         for (Usuario u : usuarios) {
+         for (User u : usuarios) {
             if (u.getUsuario().equals(usuario)) {
                 return u;            
             }
@@ -117,14 +119,14 @@ public class Administrador {
         System.out.println("Ingrese el rol del usuario");
         String rol = in.nextLine();
         
-        this.usuarios.add(new Usuario(usua,contra,rol));
+        this.usuarios.add(new User(usua,contra,rol));
         
         System.out.println("\nUsuario creado con exito :)");
     }
     
     public void consultarUsuarios(){
         System.out.println("\nLista de Usuarios registrados");
-        for (Usuario u : usuarios) {
+        for (User u : usuarios) {
             System.out.println(
                             "\n Usuario: " + u.getUsuario() +
                             "\n Rol: " + u.getRol());
@@ -135,7 +137,7 @@ public class Administrador {
         System.out.println("\nIngrese el nombre del usuario a consultar");
         String usu = in.nextLine();
         
-        Usuario usuario = buscarUsuario(usu);
+        User usuario = buscarUsuario(usu);
         
         if(usuario == null){
             System.out.println("\nUsuario no encontrado");
@@ -152,7 +154,7 @@ public class Administrador {
         System.out.println("\nIngrese el nombre del usuario a actualizar");
         String usu = in.nextLine();
         
-        Usuario usuario = buscarUsuario(usu);
+        User usuario = buscarUsuario(usu);
         
         if(usuario == null){
             System.out.println("\nUsuario no encontrado");
@@ -198,7 +200,7 @@ public class Administrador {
         System.out.println("\nIngrese el nombre del usuario a eliminar");
         String usu = in.nextLine();
         
-        Usuario usuario = buscarUsuario(usu);
+        User usuario = buscarUsuario(usu);
         if(usuario == null){
             System.out.println("\nUsuario no encontrado");
             return;

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package usuarios;
+package sesion;
 
 /**
  *
  * @author Jose Felipe
  */
-public class Usuario {
+public class User {
     private String usuario;
     private String contrasena;
     private String rol;
     
-    public Usuario( String usu, String con, String rol){
+    public User( String usu, String con, String rol){
         this.usuario = usu;
         this.contrasena = con;
         this.rol = rol;

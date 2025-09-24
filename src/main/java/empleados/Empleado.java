@@ -72,7 +72,6 @@ public class Empleado {
     }
     
     
-    
     public String getIdEmpleado() {
         return idEmpleado;
     }
