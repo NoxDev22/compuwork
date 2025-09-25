@@ -19,10 +19,15 @@ public class ModelSesion {
     }
     
     public void initializeUsers(){
-       this.users.add( new User("pedro12","pedro1234","Empleado"));
-       this.users.add(new User("maria09","maria0936","Gerente"));
+       this.users.add( new User("pedro","pedro1234","Empleado"));
+       this.users.add(new User("maria","maria0936","Gerente"));
        this.users.add(new User("xdev","xdev25","Administrador"));
-       this.users.add(new User("daniel20","daniel2025","Empleado"));
+       this.users.add(new User("daniel","daniel2025","Empleado"));
+       this.users.add(new User("juan","juan00","Empleado"));
+       this.users.add(new User("andrea","andrea34","Empleado"));
+       this.users.add(new User("marcos","marcos78","Empleado"));
+       this.users.add(new User("zlathan","zlathan34","Gerente"));
+       this.users.add(new User("ney","ney32","Empleado"));
     }
     
    

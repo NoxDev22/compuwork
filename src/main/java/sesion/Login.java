@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     private ControllerSesion controller;
     
     //Views
-    private Administrator admin;
+    
     
     public Login() {
         initComponents();
@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     public ArrayList<User> getUsers(){
-        return users;
+        return this.users;
     }
 
     /**
@@ -112,7 +112,6 @@ public class Login extends javax.swing.JFrame {
         txt_user.setForeground(new java.awt.Color(102, 102, 102));
         txt_user.setText("Ingrese su nombre de usuario");
         txt_user.setBorder(null);
-        txt_user.setFocusable(false);
         txt_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_userMousePressed(evt);
@@ -180,7 +179,6 @@ public class Login extends javax.swing.JFrame {
         txt_pass.setForeground(new java.awt.Color(102, 102, 102));
         txt_pass.setText("contraseña");
         txt_pass.setBorder(null);
-        txt_pass.setFocusable(false);
         txt_pass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_passMousePressed(evt);
@@ -360,6 +358,7 @@ public class Login extends javax.swing.JFrame {
         Administrator viewAdmin = new Administrator();
         viewAdmin.setUserName(userName);
         viewAdmin.setViewAdmin(this);
+        viewAdmin.addUserToList(this);
         viewAdmin.setVisible(true);
         this.setVisible(false);
     }

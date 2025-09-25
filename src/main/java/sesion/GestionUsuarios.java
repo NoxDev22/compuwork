@@ -112,8 +112,8 @@ public class GestionUsuarios {
     private boolean dirigirSesion(String rol,String usuario,GestionUsuarios gestion) {
         
         if(rol.equals("Administrador")){
-            ModelAdmin admin = new ModelAdmin(gestion);
-            admin.operacionesAdministrador(usuario);
+            //ModelAdmin admin = new ModelAdmin(gestion);
+          //  admin.operacionesAdministrador(usuario);
         }else if(rol.equals("Gerente")){            
             gerente.operacionesGerente(gstDep,gstEmp,gstDes,usuario);
         }else if(rol.equals("Empleado")){
