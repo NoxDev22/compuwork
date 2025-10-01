@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
     private ControllerSesion controller;
     
     //Views
+    private Administrator viewAdmin;
     
     
     public Login() {
@@ -37,6 +38,7 @@ public class Login extends javax.swing.JFrame {
         ModelSesion model = new ModelSesion(this);
         this.controller = new ControllerSesion(this, model);
         
+        this.viewAdmin = new Administrator();
     }
     
     public ArrayList<User> getUsers(){
@@ -177,7 +179,7 @@ public class Login extends javax.swing.JFrame {
 
         txt_pass.setBackground(new java.awt.Color(255, 255, 255));
         txt_pass.setForeground(new java.awt.Color(102, 102, 102));
-        txt_pass.setText("contraseña");
+        txt_pass.setText("Contraseña");
         txt_pass.setBorder(null);
         txt_pass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -281,13 +283,13 @@ public class Login extends javax.swing.JFrame {
           txt_user.setForeground(Color.black);
         }
         if(String.valueOf(txt_pass.getPassword()).isEmpty()){
-           txt_pass.setText("contraseña"); 
+           txt_pass.setText("Contraseña"); 
            txt_pass.setForeground(Color.gray);
         }
     }//GEN-LAST:event_txt_userMousePressed
 
     private void txt_passMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_passMousePressed
-        if(String.valueOf(txt_pass.getPassword()).equals("contraseña")){
+        if(String.valueOf(txt_pass.getPassword()).equals("Contraseña")){
            txt_pass.setText(""); 
            txt_pass.setForeground(Color.black);
         }
@@ -334,6 +336,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void resetField(){
+        this.txt_user.setText("Ingrese su nombre de usuario");
+        this.txt_user.setForeground(Color.gray);
+        this.txt_pass.setText("Contraseña");
+        this.txt_pass.setForeground(Color.gray);
+    }
 
     
     public String getUserName(){
@@ -355,13 +364,14 @@ public class Login extends javax.swing.JFrame {
         
     }
     public void sesionToAdmin(String userName){
-        Administrator viewAdmin = new Administrator();
+ 
+        viewAdmin.setLogin(this);
         viewAdmin.setUserName(userName);
-        viewAdmin.setViewAdmin(this);
         viewAdmin.addUserToList(this);
         viewAdmin.setVisible(true);
         this.setVisible(false);
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;

@@ -6,6 +6,7 @@ package administrador;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sesion.Login;
 import sesion.User;
@@ -20,21 +21,29 @@ public class Administrator extends javax.swing.JFrame {
      * Creates new form ViewAdministrator
      */
     private Login login;
+    private ViewAddUser addUser;
+    private ViewUpdateUser updateUser;
+    
     private ArrayList<User> users;
     ControllerAdmin controller;
     
     public Administrator() {
         initComponents();
         this.setLocationRelativeTo(null); 
-
+        
+        
     }
     
     public void addUserToList(Login login){
         this.users = login.getUsers();
         showUsersToTable();
         
+        
         ModelAdmin model = new ModelAdmin(this);
-        this.controller = new ControllerAdmin(this,model);
+        this.addUser = new ViewAddUser();
+        this.updateUser = new ViewUpdateUser();
+        this.controller = new ControllerAdmin(this,model,addUser, updateUser);
+
     }
     
     public ArrayList<User> getUsers(){
@@ -54,7 +63,7 @@ public class Administrator extends javax.swing.JFrame {
         txt_welcome = new javax.swing.JLabel();
         txt_userName = new javax.swing.JLabel();
         btn_addUser = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        btnAddUser = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -74,6 +83,9 @@ public class Administrator extends javax.swing.JFrame {
         table_users = new javax.swing.JTable();
         btn_search = new javax.swing.JPanel();
         txt_search = new javax.swing.JLabel();
+        btnCloseSesion = new javax.swing.JPanel();
+        txtCloseSesion = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -174,9 +186,20 @@ public class Administrator extends javax.swing.JFrame {
         btn_addUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_addUser.setPreferredSize(new java.awt.Dimension(137, 40));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Agregar Usuario");
+        btnAddUser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnAddUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddUser.setText("Agregar Usuario");
+        btnAddUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddUserMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddUserMouseExited(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_add.png"))); // NOI18N
@@ -188,7 +211,7 @@ public class Administrator extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_addUserLayout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(btnAddUser)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
         btn_addUserLayout.setVerticalGroup(
@@ -197,7 +220,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(btn_addUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAddUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel1.add(btn_addUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
@@ -214,6 +237,11 @@ public class Administrator extends javax.swing.JFrame {
         field_searchUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 field_searchUserMousePressed(evt);
+            }
+        });
+        field_searchUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_searchUserActionPerformed(evt);
             }
         });
 
@@ -267,8 +295,8 @@ public class Administrator extends javax.swing.JFrame {
 
         card_rol.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         card_rol.setForeground(new java.awt.Color(255, 65, 65));
-        card_rol.setText("Gerente");
-        card.add(card_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        card_rol.setText("Rol");
+        card.add(card_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
         card_btnUpdate.setBackground(new java.awt.Color(255, 65, 65));
 
@@ -277,6 +305,17 @@ public class Administrator extends javax.swing.JFrame {
         card_txtUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         card_txtUpdate.setText("Actualizar");
         card_txtUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        card_txtUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card_txtUpdateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                card_txtUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                card_txtUpdateMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout card_btnUpdateLayout = new javax.swing.GroupLayout(card_btnUpdate);
         card_btnUpdate.setLayout(card_btnUpdateLayout);
@@ -302,6 +341,17 @@ public class Administrator extends javax.swing.JFrame {
         card_txtDelet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         card_txtDelet.setText("Eliminar");
         card_txtDelet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        card_txtDelet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card_txtDeletMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                card_txtDeletMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                card_txtDeletMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout card_btnDeletLayout = new javax.swing.GroupLayout(card_btnDelet);
         card_btnDelet.setLayout(card_btnDeletLayout);
@@ -328,6 +378,8 @@ public class Administrator extends javax.swing.JFrame {
         txt_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo_small.png"))); // NOI18N
         jPanel1.add(txt_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 200, 170));
+
+        jScrollPane1.setFocusable(false);
 
         table_users.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,6 +412,12 @@ public class Administrator extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_searchMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txt_searchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txt_searchMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout btn_searchLayout = new javax.swing.GroupLayout(btn_search);
@@ -378,6 +436,42 @@ public class Administrator extends javax.swing.JFrame {
         );
 
         jPanel1.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, 30));
+
+        btnCloseSesion.setBackground(new java.awt.Color(255, 65, 65));
+
+        txtCloseSesion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtCloseSesion.setForeground(new java.awt.Color(255, 255, 255));
+        txtCloseSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtCloseSesion.setText("Cerrar sesión");
+        txtCloseSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtCloseSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCloseSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtCloseSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtCloseSesionMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnCloseSesionLayout = new javax.swing.GroupLayout(btnCloseSesion);
+        btnCloseSesion.setLayout(btnCloseSesionLayout);
+        btnCloseSesionLayout.setHorizontalGroup(
+            btnCloseSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtCloseSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+        btnCloseSesionLayout.setVerticalGroup(
+            btnCloseSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtCloseSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(btnCloseSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 110, 33));
+
+        jLabel2.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel2.setText("Falta inabilitar botones si no se ha realizado una consulta");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -424,6 +518,77 @@ public class Administrator extends javax.swing.JFrame {
        this.field_searchUser.setForeground(Color.black);
     }//GEN-LAST:event_field_searchUserMousePressed
 
+    private void txt_searchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_searchMouseEntered
+        btn_search.setBackground(new Color(200,50,50));
+    }//GEN-LAST:event_txt_searchMouseEntered
+
+    private void txt_searchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_searchMouseExited
+        btn_search.setBackground(new Color(255,65,65));
+    }//GEN-LAST:event_txt_searchMouseExited
+
+    private void btnAddUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserMouseEntered
+        btn_addUser.setBackground(new Color(200,50,50));
+    }//GEN-LAST:event_btnAddUserMouseEntered
+
+    private void btnAddUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserMouseExited
+        btn_addUser.setBackground(new Color(255,65,65));
+    }//GEN-LAST:event_btnAddUserMouseExited
+
+    private void card_txtDeletMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtDeletMouseEntered
+        card_btnDelet.setBackground(new Color(200,50,50));
+    }//GEN-LAST:event_card_txtDeletMouseEntered
+
+    private void card_txtDeletMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtDeletMouseExited
+        card_btnDelet.setBackground(new Color(255,65,65));
+    }//GEN-LAST:event_card_txtDeletMouseExited
+
+    private void card_txtUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtUpdateMouseEntered
+        card_btnUpdate.setBackground(new Color(200,50,50));
+    }//GEN-LAST:event_card_txtUpdateMouseEntered
+
+    private void card_txtUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtUpdateMouseExited
+         card_btnUpdate.setBackground(new Color(255,65,65));
+    }//GEN-LAST:event_card_txtUpdateMouseExited
+
+    private void txtCloseSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCloseSesionMouseEntered
+        btnCloseSesion.setBackground(new Color(200,50,50));
+    }//GEN-LAST:event_txtCloseSesionMouseEntered
+
+    private void txtCloseSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCloseSesionMouseExited
+        btnCloseSesion.setBackground(new Color(255,65,65));
+    }//GEN-LAST:event_txtCloseSesionMouseExited
+
+    public void setLogin(Login login){
+        this.login = login;
+    }
+     
+    private void txtCloseSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCloseSesionMouseClicked
+
+        this.login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_txtCloseSesionMouseClicked
+
+    private void btnAddUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserMouseClicked
+        this.addUser.setAdministrator(this);
+        this.addUser.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAddUserMouseClicked
+
+    private void card_txtDeletMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtDeletMouseClicked
+        this.controller.removeUser();
+    }//GEN-LAST:event_card_txtDeletMouseClicked
+
+    private void field_searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_searchUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_searchUserActionPerformed
+
+    private void card_txtUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card_txtUpdateMouseClicked
+        this.updateUser.setAdministrator(this);
+        this.updateUser.setTitle(card_userName.getText());
+        this.updateUser.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_card_txtUpdateMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -464,8 +629,13 @@ public class Administrator extends javax.swing.JFrame {
         this.txt_userName.setText("Bienvenido "+userName);
     }
     
-    public void setViewAdmin(Login login){
-        this.login = login;
+    public void createUser(String userName,String pass, String role){
+      this.controller.addUser(userName, pass, role);
+      
+    }
+    
+    public void updateUser(String oldName,String newName,String pass, String role){
+        this.controller.updateUser(oldName,newName, pass, role);
     }
     
     public void showUsersToTable(){
@@ -492,12 +662,34 @@ public class Administrator extends javax.swing.JFrame {
         this.card_pass.setText("Contraseña: "+user.getContrasena());
     }
     
+    public void setUserEmpty(){
+        this.card_userName.setText("Usuario");
+        this.card_rol.setText("Rol");
+        this.card_pass.setText("Contraseña:");
+    }
+    
+    public void resetFielSerach(){
+       this.field_searchUser.setText("Buscar usuario por nombre..");
+       this.field_searchUser.setForeground(Color.gray);
+    }
+    
+    public String confirmRemove(String name){
+        String [] buttons = {"Si","No"};
+        String error = "Seguro que desea eliminar al usuario "+name;
+        
+       int option = javax.swing.JOptionPane.showOptionDialog(null,error,"Eliminar usuario",0,JOptionPane.QUESTION_MESSAGE,null,buttons,"No");
+        
+        return buttons[option];
+    }
+    
     public void showError(String error){
         javax.swing.JOptionPane.showMessageDialog(this, error);
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAddUser;
+    private javax.swing.JPanel btnCloseSesion;
     private javax.swing.JPanel btn_addUser;
     private javax.swing.JPanel btn_exit;
     private javax.swing.JPanel btn_search;
@@ -522,6 +714,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable table_users;
+    private javax.swing.JLabel txtCloseSesion;
     private javax.swing.JLabel txt_exit;
     private javax.swing.JLabel txt_logo;
     private javax.swing.JLabel txt_search;

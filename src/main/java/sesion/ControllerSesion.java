@@ -29,6 +29,7 @@ public class ControllerSesion {
             
             case "Administrador":
                 view.sesionToAdmin(userName); 
+                view.resetField();
                 break;
             case "Gerente":
                 break;

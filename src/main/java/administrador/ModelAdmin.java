@@ -19,7 +19,6 @@ public class ModelAdmin {
     }
      
 
-    
     public int getIndexUser(String usu){
         
         for (int i = 0; i < users.size(); i++) {
@@ -30,13 +29,6 @@ public class ModelAdmin {
          return -1;
     }
     
-    public void mostrar(){
-        for (User u : users) {
-            
-            System.out.println(u.getUsuario());
-           
-         } 
-    }
     //Metodos para realizar el CRUD de usuarios
     public User searchUser(String user){
         // Buscar usuario
@@ -51,26 +43,30 @@ public class ModelAdmin {
     
     public String createUser(String name, String pass, String role){
         
+        try{
         this.users.add(new User(name,pass,role));
+        }catch(Exception e){
+            System.out.println("Algo salio mal en agrear al usuario");
+        }
         
         return "Usuario agregado correctamente :)";  
     }
     
-    public String actualizarUsuario(String name, String pass, String role){
+    public String updateUser(String oldName,String newName ,String pass, String role){
         
-        User user = searchUser(name);
+        User user = searchUser(oldName);
         
-        if(!name.trim().isEmpty()){
-            user.setUsuario(name);
+        if(!newName.trim().isEmpty()){
+            user.setUsuario(newName);
         }
         if(!pass.trim().isEmpty()){
             user.setContrasena(pass);
         }
-        if(!role.trim().isEmpty()){
+        if(role != "No"){
             user.setRol(role);
         }
         
-        if(name.trim().isEmpty() && pass.trim().isEmpty() && role.trim().isEmpty()){
+        if(newName.trim().isEmpty() && pass.trim().isEmpty() && role.trim().isEmpty()){
             return "¡Error al actualizar, NO se ingresaron datos en ninguna de las casillas.";
         }
         
@@ -78,13 +74,23 @@ public class ModelAdmin {
 
     }
     
-    public String eliminarUsuario(String userName){
+    public String removeUser(String userName){
         
         User user = searchUser(userName);      
+        if(user == null){
+            return "Usuario no encontrado";
+        }
         
         int index = getIndexUser(user.getUsuario());
         this.users.remove(index);
         
         return "Usuario eliminado correctamente :)";
+    }
+    
+    //Metodo temporal
+    public void showUsers(){
+        for (User u : users) {
+            System.out.println(u.getUsuario());
+        }  
     }
 }
