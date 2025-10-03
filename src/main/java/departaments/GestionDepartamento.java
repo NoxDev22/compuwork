@@ -2,38 +2,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package departamentos;
+package departaments;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import empleados.GestionEmpleados;
-import empleados.Empleado;
 
-import desempeno.DesDepartamento;
+import employees.Employee;
+
+import performance.PerfDepartament;
 /**
  *
  * @author Jose Felipe
  */
 public class GestionDepartamento {
     
-    private ArrayList<Departamento> departamentos;
-    private ArrayList<Empleado> empleados;
+    private ArrayList<GestDepartament> departamentos;
+    private ArrayList<Employee> empleados;
     
     
     Scanner in = new Scanner(System.in);
-    Departamento dep1 = new Departamento("103","Operaciones","Supervisa la producción de bienes.");
+    GestDepartament dep1 = new GestDepartament("103","Operaciones","Supervisa la producción de bienes.");
     
-    public GestionDepartamento(GestionEmpleados gestion){
-        this.empleados = gestion.getEmpleados();
+    public GestionDepartamento(){
+       
         this.departamentos = new ArrayList<>();
         iniciarDepartamentos();
     }
     
     public void iniciarDepartamentos(){   
-        departamentos.add(new Departamento("234","Marketing","Promocionar los productos o servicios."));
-        departamentos.add(new Departamento("465","Finanzas y Contabilidad","Gestiona los aspectos financieros."));
-        departamentos.add(new Departamento("786","I+D","Creación de nuevos productos y mejora de los existentes."));
+        departamentos.add(new GestDepartament("234","Marketing","Promocionar los productos o servicios."));
+        departamentos.add(new GestDepartament("465","Finanzas y Contabilidad","Gestiona los aspectos financieros."));
+        departamentos.add(new GestDepartament("786","I+D","Creación de nuevos productos y mejora de los existentes."));
     }
     
     public void operacionesDepartamento(){
@@ -106,9 +106,9 @@ public class GestionDepartamento {
     
     
     //Metodos de busqueda
-    public Departamento buscarDepartamento(String id){
+    public GestDepartament buscarDepartamento(String id){
         
-        for(Departamento dep: departamentos){
+        for(GestDepartament dep: departamentos){
             if(dep.getIdDepartamento().equals(id)){
                 return dep;
             }
@@ -116,12 +116,10 @@ public class GestionDepartamento {
         return null;
     }
     
-    public Empleado buscarEmpleado(String id){
+    public Employee buscarEmpleado(String id){
         
-        for(Empleado emp: empleados){
-            if(emp.getIdEmpleado().equals(id)){
-                return emp;
-            }
+        for(Employee emp: empleados){
+        
         }
         return null;
     }
@@ -146,14 +144,14 @@ public class GestionDepartamento {
         System.out.println("Ingrese la funcion");
         String funcion = in.nextLine();
         
-        departamentos.add(new Departamento(id,nombre,funcion));
+        departamentos.add(new GestDepartament(id,nombre,funcion));
         System.out.println("Departamento agregado con exito :)");
     }
     
     public void consultarDepartamentos(){
         System.out.println("\nLista de departamentos agregados");
         
-        for(Departamento dep: departamentos){
+        for(GestDepartament dep: departamentos){
             System.out.println("\nId: "+dep.getIdDepartamento()
                              + "\nNombre: "+dep.getNombre()
                              + "\nFuncion: "+dep.getFuncion());
@@ -165,7 +163,7 @@ public class GestionDepartamento {
        
         System.out.println("\n Ingrese el id del departamento a consultar");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
@@ -181,7 +179,7 @@ public class GestionDepartamento {
     public void modificarDepartamento(){
         System.out.println("\n Ingrese el id del departamento a consultar");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;
@@ -224,7 +222,7 @@ public class GestionDepartamento {
     public void eliminarDepartamento(){
         System.out.println("\nIngrese el id del departamento a eliminar");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;
@@ -251,21 +249,13 @@ public class GestionDepartamento {
         boolean continuar = true;
         
         System.out.println("\nLista de empleados sin departamento");
-        for(Empleado emp: empleados){
-            if(emp.sinDepartamento){
-                System.out.println("\nId: "+emp.getIdEmpleado()
-                    + "\nNombres: "+emp.nombre
-                    + "\nApellidos: "+emp.apellido
-                    + "\nCargo: "+emp.cargo);
-                System.out.println(" ****************************");
-            } 
-        }
+      
         consultarDepartamentos();
         
         System.out.println("\nIngrese el id del departamento al"
                          + "\nque quiere asignar empleados");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;
@@ -277,13 +267,13 @@ public class GestionDepartamento {
                 System.out.println("\nIngrese el id del empleado a agregar");
                 String id2 = in.nextLine();
                 
-                Empleado emp = buscarEmpleado(id2);
+                Employee emp = buscarEmpleado(id2);
                 if(emp == null){
                 System.out.println("\nEmpleado no encontrado");
                 
                 }else{
-                    System.out.println("\nAsignando empleado "+emp.nombre+" al departamento "+dep.getNombre());
-                    emp.sinDepartamento = false;
+                    System.out.println("\nAsignando empleado "+" al departamento "+dep.getNombre());
+                  
                     dep.asignarEmpleado(emp);
                 }
                 
@@ -306,7 +296,7 @@ public class GestionDepartamento {
     public void consultarEmpleados(){
         System.out.println("\nIngrese el id del departamento");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;
@@ -323,7 +313,7 @@ public class GestionDepartamento {
         System.out.println("\nIngrese el id del departamento al"
                          + "\nque quiere evaluar");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;
@@ -348,8 +338,8 @@ public class GestionDepartamento {
                 System.out.println("\nEl departamento presenta objetivos claros");
                 String objet = in.nextLine();
                 
-                DesDepartamento desempeno = new DesDepartamento(cumpli,result,calidad,crecimi,trabajo,recurso,objet);
-                dep.asignarDesempeno(desempeno);
+             
+              
                 System.out.println("******************************************");               
                 
                 System.out.println("\nDesea realizar otra evaluacion de desempeño");
@@ -374,7 +364,7 @@ public class GestionDepartamento {
         
         System.out.println("\nIngrese el id del departamento ");
         String id = in.nextLine();
-        Departamento dep = buscarDepartamento(id);
+        GestDepartament dep = buscarDepartamento(id);
         if(dep == null){
             System.out.println("\nDepartamento no encontrado");
             return;

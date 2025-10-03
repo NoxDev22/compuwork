@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package administrador;
+package administrator;
 
 import sesion.User;
 
@@ -53,7 +53,7 @@ public class ControllerAdmin {
         String res = model.createUser(userName, pass, role);
         view.showUsersToTable();
         this.addUser.resetFields();
-        addUser.showMessage(res);
+        this.addUser.showMessage(res);
     }
     
     public void removeUser(){
@@ -94,4 +94,6 @@ public class ControllerAdmin {
         
       
     }
+    
+    
 }

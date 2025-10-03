@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package administrador;
+package administrator;
 
 import java.util.ArrayList;
 import sesion.User;
@@ -47,6 +47,7 @@ public class ModelAdmin {
         this.users.add(new User(name,pass,role));
         }catch(Exception e){
             System.out.println("Algo salio mal en agrear al usuario");
+            return null;
         }
         
         return "Usuario agregado correctamente :)";  
@@ -66,7 +67,7 @@ public class ModelAdmin {
             user.setRol(role);
         }
         
-        if(newName.trim().isEmpty() && pass.trim().isEmpty() && role.trim().isEmpty()){
+        if(newName.trim().isEmpty() && pass.trim().isEmpty() && role == "No"){
             return "¡Error al actualizar, NO se ingresaron datos en ninguna de las casillas.";
         }
         
@@ -87,10 +88,4 @@ public class ModelAdmin {
         return "Usuario eliminado correctamente :)";
     }
     
-    //Metodo temporal
-    public void showUsers(){
-        for (User u : users) {
-            System.out.println(u.getUsuario());
-        }  
-    }
 }

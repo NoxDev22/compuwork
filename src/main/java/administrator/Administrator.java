@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package administrador;
+package administrator;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -30,7 +30,6 @@ public class Administrator extends javax.swing.JFrame {
     public Administrator() {
         initComponents();
         this.setLocationRelativeTo(null); 
-        
         
     }
     
@@ -85,11 +84,9 @@ public class Administrator extends javax.swing.JFrame {
         txt_search = new javax.swing.JLabel();
         btnCloseSesion = new javax.swing.JPanel();
         txtCloseSesion = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(765, 460));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 220));
@@ -469,10 +466,6 @@ public class Administrator extends javax.swing.JFrame {
 
         jPanel1.add(btnCloseSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 110, 33));
 
-        jLabel2.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel2.setText("Falta inabilitar botones si no se ha realizado una consulta");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -704,7 +697,6 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JLabel card_userName;
     private javax.swing.JTextField field_searchUser;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package desempeno;
+package performance;
 
 import java.util.Scanner;
-import empleados.GestionEmpleados;
-import departamentos.GestionDepartamento;
+
+import departaments.GestionDepartamento;
 
 /**
  *
@@ -16,11 +16,11 @@ public class GestionDesempeno {
     
     Scanner in = new Scanner(System.in);
     GestionDepartamento gstDep;
-    GestionEmpleados gstEmp;
     
-    public GestionDesempeno(GestionDepartamento gstDep, GestionEmpleados gstEmp){
+    
+    public GestionDesempeno(GestionDepartamento gstDep){
         this.gstDep = gstDep;
-        this.gstEmp = gstEmp;
+   
     }
     
      public void operacionesDesempeno(){
@@ -136,10 +136,10 @@ public class GestionDesempeno {
             switch(op){
                 
             case 1:
-                gstEmp.evaluarDesepeno();
+             
                 break;
             case 2:
-                gstEmp.generarReporte();
+               
                 break;
             case 3: 
                 noCerrar = false;

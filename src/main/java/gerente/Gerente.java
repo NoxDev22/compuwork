@@ -5,9 +5,9 @@
 package gerente;
 
 import java.util.Scanner;
-import departamentos.GestionDepartamento;
-import empleados.GestionEmpleados;
-import desempeno.GestionDesempeno;
+import departaments.GestionDepartamento;
+
+import performance.GestionDesempeno;
 /**
  *
  * @author Jose Felipe
@@ -18,7 +18,7 @@ public class Gerente {
     
     Scanner in = new Scanner(System.in);
     
-    public void operacionesGerente(GestionDepartamento gstDep,GestionEmpleados gstEmp,
+    public void operacionesGerente(GestionDepartamento gstDep,
             GestionDesempeno gstDes ,String usuario){
 
         boolean continuar = true;
@@ -36,7 +36,7 @@ public class Gerente {
             
             switch(op1){
                 case 1:
-                    gstEmp.operacionesEmpleado();
+                   
                     break;
                 case 2:
                     gstDep.operacionesDepartamento();

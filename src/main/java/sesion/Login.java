@@ -11,7 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import administrador.Administrator;
+import administrator.Administrator;
 
 /**
  *
