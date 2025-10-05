@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import manager.Manager;
 /**
  *
  * @author Jose Felipe
@@ -20,6 +21,7 @@ public class Employees extends javax.swing.JFrame {
     private ViewUpdateEmployee updateEmp;
     private ControllerEmployees controller;
     private ViewPerformance performance;
+    private Manager manager;
     
     public Employees() {
         initComponents();
@@ -68,8 +70,6 @@ public class Employees extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JPanel();
-        txtExit = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnCloseSesion = new javax.swing.JPanel();
         txtCloseSesion = new javax.swing.JLabel();
@@ -101,6 +101,7 @@ public class Employees extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -115,50 +116,14 @@ public class Employees extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 40, 70));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Sistema de gestion de usuarios CompuWork");
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Panel de gestion de empleados CompuWork");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Bienvenido");
+        jLabel3.setText("Bienvenid@");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
-
-        btnExit.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtExit.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtExit.setForeground(new java.awt.Color(0, 0, 0));
-        txtExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtExit.setText("X");
-        txtExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtExitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtExitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtExitMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnExitLayout = new javax.swing.GroupLayout(btnExit);
-        btnExit.setLayout(btnExitLayout);
-        btnExitLayout.setHorizontalGroup(
-            btnExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnExitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        btnExitLayout.setVerticalGroup(
-            btnExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnExitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel2.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 35, 35));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 70));
 
@@ -171,9 +136,12 @@ public class Employees extends javax.swing.JFrame {
         txtCloseSesion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txtCloseSesion.setForeground(new java.awt.Color(255, 255, 255));
         txtCloseSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtCloseSesion.setText("Cerrar sesion");
+        txtCloseSesion.setText("Regresar");
         txtCloseSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtCloseSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCloseSesionMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txtCloseSesionMouseEntered(evt);
             }
@@ -322,9 +290,9 @@ public class Employees extends javax.swing.JFrame {
         cardSalary.setText("Salario");
         jPanel7.add(cardSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
-        cardTemporary.setForeground(new java.awt.Color(255, 65, 65));
+        cardTemporary.setForeground(new java.awt.Color(51, 51, 51));
         cardTemporary.setText("Temporal");
-        jPanel7.add(cardTemporary, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        jPanel7.add(cardTemporary, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         cardBtnUpdate.setBackground(new java.awt.Color(255, 65, 65));
 
@@ -467,7 +435,7 @@ public class Employees extends javax.swing.JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo_small.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 180, 180));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 180, 180));
 
         tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -483,6 +451,12 @@ public class Employees extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblEmployees);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 570, 210));
+
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Lista de empleados");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -501,16 +475,6 @@ public class Employees extends javax.swing.JFrame {
     private void fieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldSearchActionPerformed
-
-    private void txtExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitMouseEntered
-        this.btnExit.setBackground(new Color(255,65,65));
-        this.txtExit.setForeground(Color.white);
-    }//GEN-LAST:event_txtExitMouseEntered
-
-    private void txtExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitMouseExited
-       this.btnExit.setBackground(Color.white);
-       this.txtExit.setForeground(Color.black);
-    }//GEN-LAST:event_txtExitMouseExited
 
     private void txtCloseSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCloseSesionMouseEntered
         this.btnCloseSesion.setBackground(new Color(200,50,50));
@@ -559,10 +523,6 @@ public class Employees extends javax.swing.JFrame {
     private void cardTxtPerformanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardTxtPerformanceMouseExited
         this.cardBtnPerformance.setBackground(new Color(255,65,65));
     }//GEN-LAST:event_cardTxtPerformanceMouseExited
-
-    private void txtExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitMouseClicked
-       System.exit(0);
-    }//GEN-LAST:event_txtExitMouseClicked
 
     private void fieldSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldSearchMousePressed
         this.fieldSearch.setText("");
@@ -614,6 +574,11 @@ public class Employees extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cardTxtPerformanceMouseClicked
 
+    private void txtCloseSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCloseSesionMouseClicked
+        this.manager.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_txtCloseSesionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -647,6 +612,10 @@ public class Employees extends javax.swing.JFrame {
                 new Employees().setVisible(true);
             }
         });
+    }
+    
+    public void setManager(Manager manager){
+        this.manager = manager;
     }
     
     public void createEmployee(String document,String name,String lastName, 
@@ -711,7 +680,6 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel CardName;
     private javax.swing.JPanel btnAdd;
     private javax.swing.JPanel btnCloseSesion;
-    private javax.swing.JPanel btnExit;
     private javax.swing.JPanel btnSearch;
     private javax.swing.JPanel cardBtnDelet;
     private javax.swing.JPanel cardBtnPerformance;
@@ -732,6 +700,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -744,7 +713,6 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTable tblEmployees;
     private javax.swing.JLabel txtAdd;
     private javax.swing.JLabel txtCloseSesion;
-    private javax.swing.JLabel txtExit;
     private javax.swing.JLabel txtSearch;
     // End of variables declaration//GEN-END:variables
 }

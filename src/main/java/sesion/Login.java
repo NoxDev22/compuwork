@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import administrator.Administrator;
-
+import manager.Manager;
 /**
  *
  * @author Jose Felipe
@@ -27,7 +27,7 @@ public class Login extends javax.swing.JFrame {
     
     //Views
     private Administrator viewAdmin;
-    
+    private Manager manager;
     
     public Login() {
         initComponents();
@@ -39,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         this.controller = new ControllerSesion(this, model);
         
         this.viewAdmin = new Administrator();
+        this.manager = new Manager();
     }
     
     public ArrayList<User> getUsers(){
@@ -361,14 +362,17 @@ public class Login extends javax.swing.JFrame {
         
     }
     public void sesionToManager(String userName){
-        
+        this.manager.setLogin(this);
+        this.manager.setManager(userName);
+        this.manager.setVisible(true);
+        this.setVisible(false);
     }
     public void sesionToAdmin(String userName){
  
-        viewAdmin.setLogin(this);
-        viewAdmin.setUserName(userName);
-        viewAdmin.addUserToList(this);
-        viewAdmin.setVisible(true);
+        this.viewAdmin.setLogin(this);
+        this.viewAdmin.setUserName(userName);
+        this.viewAdmin.addUserToList(this);
+        this.viewAdmin.setVisible(true);
         this.setVisible(false);
     }
 

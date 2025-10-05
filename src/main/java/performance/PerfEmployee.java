@@ -15,9 +15,9 @@ public class PerfEmployee extends Performance{
     public String personalRelationships;
     public String comunication;
     
-    public PerfEmployee(String knowing, String result, String quality, String growth,
+    public PerfEmployee(String fullfilled, String result, String quality, String growth,
                        String skills, String knoPosition,String relatioships, String comunication,String date) {
-        super(knowing, result, quality, growth,date); 
+        super(fullfilled, result, quality, growth,date); 
         this.skills = skills;
         this.knowingPosition = knoPosition;
         this.personalRelationships = relatioships;

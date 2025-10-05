@@ -56,8 +56,6 @@ public class Administrator extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        btn_exit = new javax.swing.JPanel();
-        txt_exit = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txt_welcome = new javax.swing.JLabel();
         txt_userName = new javax.swing.JLabel();
@@ -101,47 +99,12 @@ public class Administrator extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        btn_exit.setBackground(new java.awt.Color(255, 255, 255));
-        btn_exit.setPreferredSize(new java.awt.Dimension(35, 35));
-
-        txt_exit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        txt_exit.setForeground(new java.awt.Color(0, 0, 0));
-        txt_exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txt_exit.setText("X");
-        txt_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txt_exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txt_exitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txt_exitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txt_exitMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btn_exitLayout = new javax.swing.GroupLayout(btn_exit);
-        btn_exit.setLayout(btn_exitLayout);
-        btn_exitLayout.setHorizontalGroup(
-            btn_exitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_exitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txt_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        btn_exitLayout.setVerticalGroup(
-            btn_exitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_exitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txt_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconUsers.png"))); // NOI18N
 
         txt_welcome.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txt_welcome.setForeground(new java.awt.Color(0, 0, 0));
-        txt_welcome.setText("Sistema de gestion de usuarios CompuWork");
+        txt_welcome.setText("Panel de gestion de usuarios CompuWork");
 
         txt_userName.setForeground(new java.awt.Color(0, 0, 0));
         txt_userName.setText("Bienvenido");
@@ -154,24 +117,16 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_userName)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_welcome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                        .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87))))
+                    .addComponent(txt_userName)
+                    .addComponent(txt_welcome))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txt_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(txt_welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_userName, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
@@ -484,20 +439,6 @@ public class Administrator extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_txt_exitMouseClicked
-
-    private void txt_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_exitMouseEntered
-        txt_exit.setForeground(Color.white);
-        btn_exit.setBackground(new Color(255,49,49));
-    }//GEN-LAST:event_txt_exitMouseEntered
-
-    private void txt_exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_exitMouseExited
-        txt_exit.setForeground(Color.black);
-        btn_exit.setBackground(Color.white);  
-    }//GEN-LAST:event_txt_exitMouseExited
-
     private void txt_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_searchMouseClicked
         this.controller.searchUser();
     }//GEN-LAST:event_txt_searchMouseClicked
@@ -684,7 +625,6 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JLabel btnAddUser;
     private javax.swing.JPanel btnCloseSesion;
     private javax.swing.JPanel btn_addUser;
-    private javax.swing.JPanel btn_exit;
     private javax.swing.JPanel btn_search;
     private javax.swing.JPanel card;
     private javax.swing.JPanel card_btnDelet;
@@ -707,7 +647,6 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable table_users;
     private javax.swing.JLabel txtCloseSesion;
-    private javax.swing.JLabel txt_exit;
     private javax.swing.JLabel txt_logo;
     private javax.swing.JLabel txt_search;
     private javax.swing.JLabel txt_userName;
