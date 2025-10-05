@@ -14,15 +14,17 @@ public class ControllerPerformance {
     private ModelPerformance modelPerf;
     private AddPerformanceEmployee addPerformance;
     private DeletePerformanceEmployee deletPerformance;
+    UpdatePerformanceEmployee updatePerformance;
     
     private String document = "";
     
     public ControllerPerformance(ViewPerformance vPerf,ModelPerformance model,
-            AddPerformanceEmployee addPerf, DeletePerformanceEmployee deletPerf){
+            AddPerformanceEmployee addPerf, DeletePerformanceEmployee deletPerf,UpdatePerformanceEmployee updatePerf){
         this.viewPerf = vPerf;
         this.modelPerf = model;
         this.addPerformance = addPerf;
         this.deletPerformance = deletPerf;
+        this.updatePerformance = updatePerf;
     }
     
     public String getDocument(){
@@ -49,7 +51,7 @@ public class ControllerPerformance {
     }
      
     public void addPerformanceEmployee(String fullfilled, String result, String quality, String growth,
-                    String skills, String knoPosition,String relatioships, String comunication,String date){
+        String skills, String knoPosition,String relatioships, String comunication,String date){
         String res = this.modelPerf.addPerformanceEmp(this.document, fullfilled, result, quality, growth, skills, knoPosition, relatioships, comunication, date);
         
         this.addPerformance.resetData();
@@ -60,6 +62,14 @@ public class ControllerPerformance {
        String res = this.modelPerf.deletPerformanceEmployee(this.document, index);
        this.deletPerformance.resetField();
        this.deletPerformance.showMessage(res);
+    }
+    
+    public void updatePerformanceEmployee(int index,String fullfilled, String result, String quality, String growth,
+                    String skills, String knoPosition,String relatioships, String comunication,String date){
+                    
+        String res = this.modelPerf.updatePerformanceEmployee(this.document, index, fullfilled, result, quality, growth, skills, knoPosition, relatioships, comunication, date);
+        this.updatePerformance.resetData();
+        this.updatePerformance.showMessage(res);
     }
     
     public Employee viewPerformance(){  

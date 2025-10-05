@@ -22,6 +22,7 @@ public class ViewPerformance extends javax.swing.JFrame {
     private AddPerformanceEmployee addEmployee;
     private ReadPerformanceEmployee readEmployee;
     private DeletePerformanceEmployee deletEmployee;
+    private UpdatePerformanceEmployee updatePerformance;
     
     public ViewPerformance() {
         initComponents();
@@ -35,7 +36,8 @@ public class ViewPerformance extends javax.swing.JFrame {
         this.addEmployee = new AddPerformanceEmployee();
         this.readEmployee = new ReadPerformanceEmployee();
         this.deletEmployee = new DeletePerformanceEmployee();
-        this.controller = new ControllerPerformance(this,model,addEmployee,deletEmployee);
+        this.updatePerformance = new UpdatePerformanceEmployee();
+        this.controller = new ControllerPerformance(this,model,addEmployee,deletEmployee, updatePerformance);
         
     }
     /**
@@ -411,6 +413,9 @@ public class ViewPerformance extends javax.swing.JFrame {
         jLabel11.setText("Actualizar");
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel11MouseEntered(evt);
             }
@@ -614,6 +619,21 @@ public class ViewPerformance extends javax.swing.JFrame {
         this.txtDeletEmployee.setBackground(new Color(255,65,65));
     }//GEN-LAST:event_txtDeletEmployeeMouseExited
 
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        String document = this.controller.getDocument();
+        Employee emp = this.controller.viewPerformance();
+        
+        if(document != ""){
+            this.updatePerformance.setPerformance(this);
+            this.updatePerformance.setNameEmployee(emp.getName()+" "+emp.getLastName());
+            this.updatePerformance.setVisible(true);
+            this.setVisible(false);
+            
+        }else {
+            this.showMessage("¡Error no se ha realizado ninguna busqueda!");
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -650,6 +670,11 @@ public class ViewPerformance extends javax.swing.JFrame {
     }
     public void deletePerformanceEmploye(int index){
         this.controller.deletePerformanceEmployee(index);
+    }
+    
+    public void updatePerformanceEmployee(int index,String fullfilled, String result, String quality, String growth,
+                       String skills, String knoPosition,String relatioships, String comunication,String date){
+        this.controller.updatePerformanceEmployee(index,fullfilled, result, quality, growth, skills, knoPosition, relatioships, comunication, date);
     }
     
     public void addPerfEmployee(String fullfilled, String result, String quality, String growth,

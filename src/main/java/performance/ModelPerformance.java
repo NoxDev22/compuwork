@@ -64,6 +64,49 @@ public class ModelPerformance {
          return -1;
     }
     
+    public String updatePerformanceEmployee(String document,int index,String fullfilled, String result, String quality, String growth,
+                    String skills, String knoPosition,String relatioships, String comunication,String date){
+        Employee emp = searchEmployee(document);
+        PerfEmployee performance = emp.getPerformance().get(index);
+        
+        if(fullfilled != "Seleccionar"){
+            performance.setFulfilledObjetive(fullfilled);
+        }
+        if(result != "Seleccionar"){
+            performance.setResultsObjetive(result);
+        }
+        if(quality != "Seleccionar"){
+            performance.setQualityWork(quality);
+        }
+        if(growth != "Seleccionar"){
+            performance.setPotentialGrowth(growth);
+        }
+        if(skills != "Seleccionar"){
+            performance.setSkills(skills);
+        }
+        if(knoPosition != "Seleccionar"){
+            performance.setKnowingPosition(knoPosition);
+        }
+        if(relatioships != "Seleccionar"){
+            performance.setPersonalRelationships(relatioships);
+        }
+        if(comunication != "Seleccionar"){
+            performance.setComunication(comunication);
+        }
+        if(date != "Seleccionar"){
+            performance.setPerformanceDate(date);
+        }
+
+        
+        if(date == "Seleccionar"&& comunication == "Seleccionar"&&relatioships == "Seleccionar"&&knoPosition == "Seleccionar"
+                && skills == "Seleccionar"&&growth == "Seleccionar"&&quality == "Seleccionar"&&result == "Seleccionar"&&fullfilled == "Seleccionar"){
+            
+            return "¡Error al actualizar, NO se ingresaron datos en ninguna de las casillas.";
+        }
+        
+        return "Datos actualizados correctamente :)";
+    }
+    
     public String deletPerformanceEmployee(String document,int index){
         Employee emp = searchEmployee(document);
         
